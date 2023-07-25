@@ -43,7 +43,12 @@ const navigation = [
     {
         name: 'Event KeyCodes',
         url: 'keycodes'
+    },
+    {
+        name: 'FAQ Collapse',
+        url: 'faq'
     }
+
 ]
 
 const origin = window.location.origin
