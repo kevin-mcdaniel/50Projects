@@ -39,6 +39,10 @@ const navigation = [
     {
         name: 'Dad Jokes',
         url:'dadjokes'
+    },
+    {
+        name: 'Event KeyCodes',
+        url: 'keycodes'
     }
 ]
 
