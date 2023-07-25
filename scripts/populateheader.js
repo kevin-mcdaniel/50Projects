@@ -51,6 +51,154 @@ const navigation = [
     {
         name: 'Random Choice Picker',
         url: 'randomchoice'
+    },
+    {
+        name: 'Animated Navigation',
+        url: 'animatednav'
+    },
+    {
+        name: 'Incrementing Counter',
+        url: 'incrementingcounter'
+    },
+    {
+        name: 'Drink Water',
+        url: 'drinkwater'
+    },
+    {
+        name: 'Movie App',
+        url: 'movieapp'
+    },
+    {
+        name: 'Background Slider',
+        url: 'backgroundslider'
+    },
+    {
+        name: 'Theme Clock',
+        url: 'themeclock'
+    },
+    {
+        name: 'Button Ripple Effect',
+        url: 'buttonripple'
+    },
+    {
+        name: 'Drag N Drop',
+        url: 'dragndrop'
+    },
+    {
+        name: 'Drawing App',
+        url: 'drawingapp'
+    },
+    {
+        name: 'Kinetic CSS Loader',
+        url: 'kineticloader'
+    },
+    {
+        name: 'Content Placeholder',
+        url: 'contentplaceholder'
+    },
+    {
+        name: 'Sticky Navbar',
+        url: 'stickynav'
+    },
+    {
+        name: 'Double Vertical Slider',
+        url: 'doubleslider'
+    },
+    {
+        name: 'Toast Notification',
+        url: 'toastnotification'
+    },
+    {
+        name: 'Github Profiles',
+        url: 'githubprofiles'
+    },
+    {
+        name: 'Double Heart Click',
+        url: 'doubleheart'
+    },
+    {
+        name: 'Auto Text Effect',
+        url: 'autotexteffect'
+    },
+    {
+        name: 'Password Generator',
+        url: 'passwordgenerator'
+    },
+    {
+        name: 'Good, Cheap, Fast Checkboxes',
+        url: 'checkboxes'
+    },
+    {
+        name: 'Notes App',
+        url: 'notesapp'
+    },
+    {
+        name: 'Animated Countdown',
+        url: 'animatedcountdown'
+    },
+    {
+        name: 'Image Carousel',
+        url: 'imagecarousel'
+    },
+    {
+        name: 'Hoverboard',
+        url: 'hoverboard'
+    },
+    {
+        name: 'Pokedex',
+        url: 'pokedex'
+    },
+    {
+        name: 'Mobile Tab Navigation',
+        url: 'mobiletabnav'
+    },
+    {
+        name: 'Password Strength Background',
+        url: 'passwordstrength'
+    },
+    {
+        name: '3D Background Boxes',
+        url: 'backgroundboxes'
+    },
+    {
+        name: 'Verify Account UI',
+        url: 'verifyaccount'
+    },
+    {
+        name: 'Live User Filter',
+        url: 'liveuserfilter'
+    },
+    {
+        name: 'Feedback UI Design',
+        url: 'feedbackui'
+    },
+    {
+        name: 'Custom Range Slider',
+        url: 'customrangeslider'
+    },
+    {
+        name: 'Netflix Navigation',
+        url: 'netflixnav'
+    },
+    {
+        name: 'Quiz App',
+        url: 'quizapp'
+    },
+    {
+        name: 'Testimonial Box Switcher',
+        url: 'testimonialswitcher'
+    },
+    {
+        name: 'Random Image Feed',
+        url: 'randomimagefeed'
+    },
+    {
+        name: 'Todo List',
+        url: 'todolist'
+    },
+    {
+        name: 'Insect Catch',
+        url: 'insectcatch'
     }
 
 ]
