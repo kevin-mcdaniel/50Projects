@@ -1,0 +1,48 @@
+.header{
+    position:absolute;
+    right:0;
+    top:0;
+    bottom:0;
+    overflow-y: scroll;
+    display: flex;
+    align-items:flex-end;
+    flex-direction: column;
+    width:20vw;
+}
+
+.headerNavigation{
+    list-style: none;  
+    padding: 0 1.5rem;
+    flex-direction: column;
+    width:100%;
+    display: none;
+    z-index: -1;
+}
+
+.headerNavigation li {
+    padding:.25rem 0;
+}
+
+.header .fas{
+    padding: 2rem;
+}
+
+.header.active .headerNavigation{
+    left:0;
+    top:50px;
+    display: flex;
+}
+
+.header.active{
+    background-color: #333;
+}
+
+.headerNavigation a{
+    color:#fff;
+    text-decoration: none;
+}
+
+.header.active i{
+    color:#fff;
+}
+
