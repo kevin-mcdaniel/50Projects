@@ -47,6 +47,10 @@ const navigation = [
     {
         name: 'FAQ Collapse',
         url: 'faq'
+    },
+    {
+        name: 'Random Choice Picker',
+        url: 'randomchoice'
     }
 
 ]
