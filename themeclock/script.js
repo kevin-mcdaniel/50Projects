@@ -5,19 +5,12 @@ const elTime = document.querySelector('.time');
 const elDate = document.querySelector('.date');
 const btnToggle = document.querySelector('.toggle');
 
-//Rather than resetting the arc back to 0 at the rounding of a hour/minute/second and causing the rotation 
-//to reset counter clockwise we are going to use variables to continue to add degrees past 360
-let totalHourArc = 0;
-let totalMinuteArc = 0;
-let totalSecondArc = 0;
 
 // StackOverflow https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
 function mapToScale(num, in_min, in_max, out_min, out_max) {
     //function for mapping a value to scale
     return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
-
-//Pulling all of the calculations out of the set time function
 
 function getDateValues() {
     //Handles the descriptive name text
@@ -42,77 +35,65 @@ function getTimeValues(){
     const seconds = time.getSeconds();
     const ampm = hours >= 12 ? 'PM' : 'AM' 
 
-    if(mapToScale(hoursForClock, 0, 12, 0, 360) === 0){
-        if(totalHourArc + 360 === 2147483880){
-            //we can only track until we hit the max integer value so we have to do the hitch in the 
-            //animation to reset the value to 0. 2147483880 is the last number evenly divisible by
-            //360
-            totalHourArc = 0;
-
-        } else {
-            totalHourArc += 360;
-        }
-    }
-    
-    if(mapToScale(minutes, 0, 60, 0, 360) === 0){
-        if(totalMinuteArc + 360 === 2147483880){
-            totalMinuteArc = 0;
-        } else {
-            totalMinuteArc += 360;
-        }
-        
-    }
-
-    if(mapToScale(seconds, 0, 60, 0, 360) === 0){
-        if(totalSecondArc + 360 === 2147483880){
-            totalSecondArc = 0;
-        } else {
-            totalSecondArc += 360;
-        }
-    }
-
     //Get the hour rotation, then determine how much extra rotation to add based off the number of minutes.
     //An hour arc is 30 degrees so our additional mapToScale should max at 30 (out-max)
     //Also note that in order to get the proper 30 degrees you need 12 hours (in-max) not 11
-    const hourRotation = totalHourArc + mapToScale(hoursForClock, 0, 12, 0, 360) + mapToScale(minutes, 0, 60, 0, 30)
-    const minuteRotation = totalMinuteArc + mapToScale(minutes, 0, 60, 0, 360)
-    const secondRotation = totalSecondArc + mapToScale(seconds, 0, 60, 0, 360)
+    const hourRotation = mapToScale(hoursForClock, 0, 12, 0, 360) + mapToScale(minutes, 0, 60, 0, 30)
+    const minuteRotation = mapToScale(minutes, 0, 60, 0, 360)
+    const secondRotation = mapToScale(seconds, 0, 60, 0, 360)
     return { minutes, hoursForClock, hourRotation, minuteRotation, secondRotation, ampm};
 }
 
 function setTime() {
-
+    //Handles the actual display logic
+    
+    //destructure the returned values into individual variables.
     const {dayName, month, day} = getDateValues();
     const {minutes, hoursForClock, hourRotation, minuteRotation, secondRotation, ampm} = getTimeValues();
     
     elTime.innerHTML = `${String(hoursForClock).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${ampm}`;
     elDate.innerHTML = `${dayName}, ${month} <span class="circle">${day}</span>`;
     
-    if(!totalSecondArc === 0){
-        elSecond.style.transition = 'none';
+    if(secondRotation === 0){
+        //scale function returns 0 rather than 360 so manually set the rotation to 360 to complete the arc
+        elSecond.style.transform = `translate(-50%, -100%) rotate(360deg)`;
+        //we need to wait the .5sec for the animation to complete before
+        setTimeout(()=>{
+            elSecond.style.transform = `translate(-50%, -100%) rotate(0deg)`;
+            elSecond.style.transition = 'none';
+        }, 500);
+        
     } else {
         elSecond.style.transition = 'all 0.5s ease-in';
+        elSecond.style.transform = `translate(-50%, -100%) rotate(${secondRotation}deg)`;
     }
 
-    if(!totalMinuteArc === 0){
-        elMinute.transition = 'none';
+    if(minuteRotation === 0){
+        elMinute.style.transform = `translate(-50%, -100%) rotate(360deg)`;
+        setTimeout(()=>{
+            elMinute.style.transform = `translate(-50%, -100%) rotate(0deg)`;
+            elMinute.style.transition = 'none';
+        }, 500);
     } else {
         elMinute.transition = 'all 0.5s ease-in';
+        elMinute.style.transform = `translate(-50%, -100%) rotate(${minuteRotation}deg)`;
     }
-
-    if(!totalHourArc === 0){
-        elHour.transition = 'none';
+    
+    if(hourRotation === 0){
+        elMinute.style.transform = `translate(-50%, -100%) rotate(360deg)`;
+        setTimeout(()=>{
+            elHour.style.transform = `translate(-50%, -100%) rotate(0deg)`;
+            elHour.style.transition = 'none';
+        }, 500);
     } else {
         elHour.transition = 'all 0.5s ease-in';
+        elHour.style.transform = `translate(-50%, -100%) rotate(${hourRotation}deg)`;
     }
 
-    elHour.style.transform = `translate(-50%, -100%) rotate(${hourRotation}deg)`;
-    elMinute.style.transform = `translate(-50%, -100%) rotate(${minuteRotation}deg)`;
-    elSecond.style.transform = `translate(-50%, -100%) rotate(${secondRotation}deg)`;
-    
 }
 
 btnToggle.addEventListener('click', (e) =>{
+    //toggle between light and dark mode
     const elHtml = document.querySelector('html');
     if(elHtml.classList.contains('dark')){
         elHtml.classList.remove('dark');
