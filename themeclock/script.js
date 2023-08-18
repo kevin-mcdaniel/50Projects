@@ -61,6 +61,7 @@ function setTime() {
         setTimeout(()=>{
             elSecond.style.transform = `translate(-50%, -100%) rotate(0deg)`;
             elSecond.style.transition = 'none';
+            elHour.transition = 'all 0.5s ease-in';
         }, 500);
         
     } else {
@@ -84,6 +85,7 @@ function setTime() {
         setTimeout(()=>{
             elHour.style.transform = `translate(-50%, -100%) rotate(0deg)`;
             elHour.style.transition = 'none';
+
         }, 500);
     } else {
         elHour.transition = 'all 0.5s ease-in';
